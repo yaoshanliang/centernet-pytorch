@@ -21,7 +21,7 @@ if __name__ == "__main__":
     #   'heatmap'           表示进行预测结果的热力图可视化，详情查看下方注释。
     #   'export_onnx'       表示将模型导出为onnx，需要pytorch1.7.1以上。
     #----------------------------------------------------------------------------------------------------------#
-    mode = "predict"
+    mode = "fps"
     #-------------------------------------------------------------------------#
     #   crop                指定了是否在单张图片预测后对目标进行截取
     #   count               指定了是否进行目标的计数
@@ -49,7 +49,7 @@ if __name__ == "__main__":
     #   test_interval和fps_image_path仅在mode='fps'有效
     #----------------------------------------------------------------------------------------------------------#
     test_interval   = 100
-    fps_image_path  = "img/street.jpg"
+    fps_image_path  = "img/boat.jpg"
     #-------------------------------------------------------------------------#
     #   dir_origin_path     指定了用于检测的图片的文件夹路径
     #   dir_save_path       指定了检测完图片的保存路径
@@ -63,6 +63,7 @@ if __name__ == "__main__":
     #   
     #   heatmap_save_path仅在mode='heatmap'有效
     #-------------------------------------------------------------------------#
+    heatmap_image_path = fps_image_path
     heatmap_save_path = "model_data/heatmap_vision.png"
     #-------------------------------------------------------------------------#
     #   simplify            使用Simplify onnx
@@ -160,7 +161,8 @@ if __name__ == "__main__":
 
     elif mode == "heatmap":
         while True:
-            img = input('Input image filename:')
+            # img = input('Input image filename:')
+            img = heatmap_image_path
             try:
                 image = Image.open(img)
             except:
